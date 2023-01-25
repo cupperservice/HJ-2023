@@ -18,6 +18,7 @@ AWS Academy の教材を使用して クラウド（AWS）の基礎を理解す�
   * [IPv4 アドレッシング](https://www.youtube.com/watch?v=KrrK3FJNigY)
 
 ### 2. 演習  
+0. [EC2にSSHで接続する](./課題/00.EC2にSSHで接続する/README.md)
 1. [EC2でWebサーバを起動する](./課題/01.EC2でWebサーバを起動する/README.md)
 2. [EC2でDBサーバを起動する](./課題/02.EC2でDBサーバを起動する/README.md)
 3. [EC2でWordPressを起動する](./課題/03.EC2でWordPressを起動する/README.md)
