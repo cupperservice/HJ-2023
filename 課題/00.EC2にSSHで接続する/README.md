@@ -182,3 +182,61 @@ aws ec2 describe-instances \
 --instance-ids "$INSTANCE_ID" \
 | jq '.Reservations[].Instances[0].State.Name'
 ```
+
+## EC2 インスタンスにSSH で接続
+1. 秘密鍵を取得  
+    Leaner Lab の AWS Details を押す
+    ![](./img/ssh-1.png)
+
+    [Download PEM] を押す
+    ![](./img/ssh-2.png)
+
+2. CloudShell を起動
+
+3. Actions -> Download file を押す
+![](./img/ssh-3.png)
+
+4. ファイルを選択、[Upload] を押す
+![](./img/ssh-4.png)
+
+5. 鍵のパーミッションを変更
+    * 変更前
+    ```
+    ls -l labsuser.pem
+    -rw-rw-r-- 1 cloudshell-user cloudshell-user 1674 Jan 25 07:51 labsuser.pem
+    ```
+
+    * 変更
+    ```
+    chmod 0400 labsuser.pem
+    ```
+
+    * 変更後
+    ```
+    ls -l labsuser.pem 
+    -r-------- 1 cloudshell-user cloudshell-user 1674 Jan 25 07:51 labsuser.pem
+    ````
+
+6. ssh agent を起動
+```
+eval $(ssh-agent)
+```
+
+7. 鍵を登録
+```
+ssh-add labsuser.pem
+```
+
+8. EC2 インスタンスに SSH で接続
+```
+PUBLIC_IP=EC2 インスタンスの Public IP
+ssh -A ec2-user@"$PUBLIC_IP"
+```
+
+# 課題
+以下の AMI を使用して EC2 インスタンスを作成、SSH で接続する
+* Ubuntu
+* Debian
+
+__注意__：Amazon Linux では `ec2-user` で SSH 接続していたが、`ubuntu`, `debian` ではどのユーザーを使用すれば良いでしょうか？
+
