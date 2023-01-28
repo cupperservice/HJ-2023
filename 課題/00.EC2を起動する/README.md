@@ -1,5 +1,10 @@
 # EC2にSSHで接続する
+このハンズオンでは以下を学習する
+* GUI, CLI の両方で EC2 インスタンスを起動する
+* EC2 に接続する
+
 ## 事前準備
+Cloud 9 / CloudShell を利用する
 ### Cloud 9
 1. AWS Management Console のサービス検索で `Cloud9` を検索して選択
 ![](./img/cloud9-1.png)
@@ -53,7 +58,7 @@ __Auto-assign public IP が Enable となっていることを確認すること
     1. Advanced details の ▶ を押す
     2. IAM instance profile で LabInstanceProfile を選択する
 
-![](./img/ec2-6-2.png)
+    ![](./img/ec2-6-2.png)
 
 8. [Launch instance] を押す
 ![](./img/ec2-7.png)
