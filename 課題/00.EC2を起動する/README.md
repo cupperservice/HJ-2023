@@ -49,13 +49,19 @@
 __Auto-assign public IP が Enable となっていることを確認すること__
 ![](./img/ec2-6.png)
 
-7. [Launch instance] を押す
+7. IAM instance profile を設定  
+    1. Advanced details の ▶ を押す
+    2. IAM instance profile で LabInstanceProfile を選択する
+
+![](./img/ec2-6-2.png)
+
+8. [Launch instance] を押す
 ![](./img/ec2-7.png)
 
-8. [View all instances] を押す
+9. [View all instances] を押す
 ![](./img/ec2-8.png)
 
-9. Instance state と Instance check を確認する
+10. Instance state と Instance check を確認する
     * Instance state: Running
     * Instance check: 2/2 checks passed
 ![](./img/ec2-9.png)
@@ -69,6 +75,18 @@ EC2 のインスタンス一覧の画面で作成した EC2 を選択、AMI ID�
 EC2 のインスタンス一覧の画面で作成した EC2 を選択、Security タブを選択、Security group IDをコピー
 ![](./img/ec2-cli-2.png)
 
+3. EC2InstanceProfile の Arn を確認する  
+    サービス検索で IAM を検索して選択
+    ![](./img/ec2-cli-2-2.png)
+
+    左側のメニューで Role を選択  
+    検索窓で LabRole を入力  
+    LabRole を選択
+    ![](./img/ec2-cli-2-3.png)
+
+    Instance Profile ARN の値をコピー
+    ![](./img/ec2-cli-2-4.png)
+
 3. CloudShell を起動する
 
 4. AWS CLI で EC2 を起動
@@ -77,6 +95,7 @@ EC2 のインスタンス一覧の画面で作成した EC2 を選択、Security
 ```
 AMI_ID=AMI ID
 SECURITY_GROUP_ID=Security Group ID
+ROLE=Instance Profile ARN
 NAME=Instance Name
 ```
 
@@ -90,6 +109,7 @@ aws ec2 run-instances \
 --key-name vockey \
 --security-group-ids "$SECURITY_GROUP_ID" \
 --associate-public-ip-address \
+--iam-instance-profile "Arn=$ROLE" \
 --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$NAME}]"
 ```
 
@@ -182,8 +202,35 @@ aws ec2 describe-instances \
 --instance-ids "$INSTANCE_ID" \
 | jq '.Reservations[].Instances[0].State.Name'
 ```
+## EC2 に接続する
+EC2 インスタンスの一覧で EC2 を選択し、[Connect] を押す
+![](./img/conn-1.png)
 
-## EC2 インスタンスにSSH で接続
+EC2 インスタンスに接続する方法は以下の通り 4種類ある
+|種別                 ||
+|:-------------------|:------|
+|EC2 instance Connect|SSHクライアントを使ってインスタンスに接続|
+|Session Manager     |インスタンスにシェルアクセス|
+|SSH client          |SSHクライアントを使って、インスタンスに接続。<br/>SSHキーは接続ごとに登録し、60秒だけ有効|
+|EC2 serial console  |EC2 のシリアルポートに接続|
+
+### EC2 Instance Connect
+EC2 Instance Connect の画面で [Connect] を押す
+![](./img/conn-2.png)
+
+EC2 に接続してシェル (bash) が起動する
+![](./img/conn-3.png)
+
+### Session Manager
+Session Manager の画面で [Connect] を押す
+![](./img/conn-4.png)
+
+EC2 に接続してシェル (bash) が起動する
+![](./img/conn-5.png)
+
+終了するには右上の [Terminate] を押す
+
+### EC2 インスタンスにSSH で接続
 1. 秘密鍵を取得  
     Leaner Lab の AWS Details を押す
     ![](./img/ssh-1.png)
