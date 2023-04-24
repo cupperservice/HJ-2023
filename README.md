@@ -10,6 +10,19 @@
 * AWSの基礎  
 AWS Academy の教材を使用して クラウド（AWS）の基礎を理解する
 
+  * 学習可能なコース
+    * Cloud Foundations <- これを実施
+    * Cloud Archtecting
+    * Cloud Developing
+    * Cloud Operations
+    * Cloud Security Foundations
+    * Data Analytics
+    * Data Center Technician
+    * Data Engineering
+    * Engineering Operations Technician
+    * Machine Learning Foundations
+    * Machine Learning for Natural Language Processing
+
 * ネットワークの基礎  
 以下の動画を使用してネットワークの基礎を理解する
   * [OSI 参照モデル](https://www.youtube.com/watch?v=5QHXbxZIUDg)
@@ -39,3 +52,4 @@ AWS Academy の教材を使用して クラウド（AWS）の基礎を理解す�
 ---
 ## 授業の資料置き場
 * [2023/04/11](./0411/README.md)
+* [2023/04/25](./0425/README.md)
