@@ -56,7 +56,7 @@ AWS Management Console の RDS サービスから RDS のエンドポイント�
 5. mysql コマンドで データベースに接続する
 Web Server 上で以下のコマンドを実行してデーターベースに接続する
 ```
-mysql -h "4. でコピーしたエンドポイント" -umain -plab-password lab-db
+mysql -h "4. でコピーしたエンドポイント" -umain -plab-password lab
 ```
 
 6. テーブルを作成する
