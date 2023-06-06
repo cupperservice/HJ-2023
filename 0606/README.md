@@ -97,4 +97,45 @@ use lab
 1. 生徒の名前(first_name, last_name)と平均点を表示してみましょう。  
 平均の計算はAVG関数を使います。
 
+```
+select a.first_name, a.last_name, avg(score)
+from student a, score b
+where a.id = b.student_id
+group by a.id;
+```
+
+* 結果
+```
++------------+-----------+------------+
+| first_name | last_name | avg(score) |
++------------+-----------+------------+
+| Taro       | Suzuki    |    73.0000 |
+| Hanako     | Mochizuki |    55.0000 |
+| Yuko       | Tanaka    |    66.0000 |
+| Tomoko     | Hayashi   |    92.0000 |
+| Jiro       | Nakata    |    48.3333 |
++------------+-----------+------------+
+5 rows in set (0.001 sec)
+```
+
 2. 50点以下の点数をとった生徒の名前(first_name, last_name)とクラス名、点数を表示してみましょう。
+
+```
+select a.first_name, a.last_name, c.class_name, b.score
+from student a, score b, class c
+where a.id = b.student_id
+  and b.class_id = c.id
+  and b.score <= 50
+group by a.id;
+```
+
+* 結果
+```
++------------+-----------+-------------+-------+
+| first_name | last_name | class_name  | score |
++------------+-----------+-------------+-------+
+| Hanako     | Mochizuki | Chemistry   |    43 |
+| Jiro       | Nakata    | Mathematics |    23 |
++------------+-----------+-------------+-------+
+2 rows in set (0.001 sec)
+```
