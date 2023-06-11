@@ -58,6 +58,7 @@ AWS Academy の教材を使用して クラウド（AWS）の基礎を理解す�
 * [2023/05/23](./0523/README.md)
 * [2023/05/30](./0530/README.md)
 * [2023/06/06](./0606/README.md)
+* [2023/06/13](./0613/README.md)
 
 ---
 ## 課題一覧
@@ -65,6 +66,7 @@ AWS Academy の教材を使用して クラウド（AWS）の基礎を理解す�
 * [提出状況一覧](https://docs.google.com/spreadsheets/d/1zU60i8eh8YeC0afDrRNGNulez7uWAOq0W8ST-GdJskg/edit?usp=sharing)
 
 ### 必須
+以下の課題は必須です。  
 1. AWS Academy 知識確認テスト
 - [x] モジュール1
 - [ ] モジュール2 (不要)
@@ -77,7 +79,11 @@ AWS Academy の教材を使用して クラウド（AWS）の基礎を理解す�
 - [ ] モジュール9 (不要)
 - [x] モジュール10
 
+2. [EC2を起動する](./%E8%AA%B2%E9%A1%8C/00.EC2%E3%82%92%E8%B5%B7%E5%8B%95%E3%81%99%E3%82%8B/README.md)
+
 ### 任意提出
-1. モジュール6 - AWS Lambda [Activity 1]
-2. モジュール7 - ラボ4
-3. モジュール8 - ラボ5 [追加課題](./0606/README.md)
+以下の提出は任意です。  
+1. モジュール6  - AWS Lambda [Activity 1]
+2. モジュール7  - ラボ 4 : EBS を使用する
+3. モジュール8  - ラボ 5 : データベースサーバーを構築 [追加課題](./0606/README.md)
+4. モジュール10 - ラボ 6 :アーキテクチャのスケールと負荷分散を行う
