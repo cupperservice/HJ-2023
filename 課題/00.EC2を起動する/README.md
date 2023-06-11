@@ -94,7 +94,7 @@ EC2 のインスタンス一覧の画面で作成した EC2 を選択、Security
 
 3. CloudShell を起動する
 
-4. AWS CLI で EC2 を起動
+4. AWS CLI で EC2 を起動  
 以下のパラメータを設定
 
 ```
@@ -140,7 +140,7 @@ aws ec2 describe-instances \
 | jq '.Reservations[].Instances'
 ```
 
-6. EC2 を停止する
+6. EC2 を停止する  
 以下のパラメータを設定
 
 ```
@@ -185,7 +185,7 @@ aws ec2 describe-instances \
 | jq '.Reservations[].Instances[0].State.Name'
 ```
 
-8. EC2 を終了する
+8. EC2 を終了する  
 以下のパラメータを設定
 
 ```
@@ -286,9 +286,18 @@ ssh -A ec2-user@"$PUBLIC_IP"
 ```
 
 # 課題
-以下の AMI を使用して EC2 インスタンスを作成、SSH で接続する
+以下の AMI を使用して EC2 インスタンスを作成し、CloudShell から SSH で接続する
 * Ubuntu
 * Debian
 
-__注意__：Amazon Linux では `ec2-user` で SSH 接続していたが、`ubuntu`, `debian` ではどのユーザーを使用すれば良いでしょうか？
+## 提出物
+以下のスクリーンショットを提出してください。  
+__注意__: CloudShell で実行したことがわかるように画面全体のスクリーンショットを提出してください。
 
+CloudShell から EC2インスタンスに SSH で接続し、以下のコマンドを実行して OS の種類を確認する。
+```
+date "+%Y-%m-%d %H:%M:%S.%N" > date.txt
+cat /etc/os-release
+```
+
+__Note__：Amazon Linux では `ec2-user` で SSH 接続していたが、`ubuntu`, `debian` ではどのユーザーを使用すれば良いでしょうか？
