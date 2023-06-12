@@ -1,6 +1,4 @@
 # EC2 で Web サーバを起動する
-## ゴール
-
 ## Web サーバとは？
 Web サーバは、HTTPに則り、クライアントソフトウェアのウェブブラウザに対して、HTMLやオブジェクト（画像など）の表示を提供するサービスプログラム及び、そのサービスが動作するサーバコンピュータを指す。 広義には、クライアントソフトウェアとHTTPによる通信を行うプログラム及びコンピュータ。
 
@@ -8,34 +6,40 @@ Web サーバは、HTTPに則り、クライアントソフトウェアのウェ
 
 * 参考: [HTTP の歴史](https://speakerdeck.com/cupperservice/history-of-http)
 
-## Web サーバをインストールする EC2 インスタンスを起動する
+---
+## この課題で作成するシステムの構成
+![](./img/s1.png)
+
+---
+## Web サーバをインストールする EC2 インスタンスを用意する
 1. セキュリティグループを作成する
-  * VPC サービスに移動
-  * 左のメニューから Security groups を選択
-  * [Create Security Group] を押す
-  * 以下の項目を入力
-    * Security group name: web-sercurity
-    * Description: for web server
-    * VPC: default
-  * [Add Rule] を押して Inbound rules を追加 (HTTP)
-    * Type: HTTP
-    * Source type: Anywhere-IPv4
-  * [Add Rule] を押して Inbound rules を追加 (SSH)
-    * Type: SSH
-    * Source type: Anywhere-IPv4
-  * [Create security group] を押す
+    * VPC サービスに移動
+    * 左のメニューから Security groups を選択
+    * [Create Security Group] を押す
+    * 以下の項目を入力
+      * Security group name: web-sercurity
+      * Description: for web server
+      * VPC: default
+    * [Add Rule] を押して Inbound rules を追加 (HTTP)
+      * Type: HTTP
+      * Source type: Anywhere-IPv4
+    * [Add Rule] を押して Inbound rules を追加 (SSH)
+      * Type: SSH
+      * Source type: Anywhere-IPv4
+    * [Create security group] を押す
 
 2. EC2 インスタンスを 2つ作成する
-  * EC2 サービスに移動
-  * 左のメニューから instances を選択
-  * [Launch instances] を押す
-  * Name: Web Server
-  * AMI: Amazon Linux 2023 を使用する
-  * Key pair: vockey を使用する
-  * Public IP アドレスを割り当てる
-  * Number of instances: 2を入力する
-  * Firewall (security groups): 1.で作成したセキュリティグループを選択する
+    * EC2 サービスに移動
+    * 左のメニューから instances を選択
+    * [Launch instances] を押す
+    * Name: Web Server
+    * AMI: Amazon Linux 2023 を使用する
+    * Key pair: vockey を使用する
+    * Public IP アドレスを割り当てる
+    * Number of instances: 2を入力する
+    * Firewall (security groups): 1.で作成したセキュリティグループを選択する
 
+---
 ## Apache HTTP サーバを起動する
 1. Apache をインストールする EC2 インスタンスの Name を以下のように変更する  
 Apache Web Server
@@ -72,6 +76,7 @@ Web ブラウザから EC2 インスタンスの Public IP アドレスにアク
 テストページ
 ```
 
+---
 ## Nginx を起動する
 1. Nginx をインストールする EC2 インスタンスの Name を以下のように変更する  
 Nginx Web Server
@@ -106,6 +111,7 @@ Commercial support is available at nginx.com.
 Thank you for using nginx.
 ```
 
+---
 ## 課題
 Apache と nginx が起動するポート番号を 80 から 8080 に変更してみましょう。
 
