@@ -2,12 +2,12 @@
 ## Web サーバとは？
 Web サーバは、HTTPに則り、クライアントソフトウェアのウェブブラウザに対して、HTMLやオブジェクト（画像など）の表示を提供するサービスプログラム及び、そのサービスが動作するサーバコンピュータを指す。 広義には、クライアントソフトウェアとHTTPによる通信を行うプログラム及びコンピュータ。
 
-[Wikipedia](https://ja.wikipedia.org/wiki/Web%E3%82%B5%E3%83%BC%E3%83%90) より
-
+* [Wikipedia](https://ja.wikipedia.org/wiki/Web%E3%82%B5%E3%83%BC%E3%83%90) より
 * 参考: [HTTP の歴史](https://speakerdeck.com/cupperservice/history-of-http)
 
 ---
 ## この課題で作成するシステムの構成
+本演習では、Apache と Nginx の2種類の Web サーバを作成します。
 ![](./img/s1.png)
 
 ---
@@ -17,7 +17,7 @@ Web サーバは、HTTPに則り、クライアントソフトウェアのウェ
     * 左のメニューから Security groups を選択
     * [Create Security Group] を押す
     * 以下の項目を入力
-      * Security group name: web-sercurity
+      * Security group name: web security group
       * Description: for web server
       * VPC: default
     * [Add Rule] を押して Inbound rules を追加 (HTTP)
@@ -121,5 +121,3 @@ Apache と nginx が起動するポート番号を 80 から 8080 に変更し�
 
 ### 提出物
 Web ブラウザから Web サーバにアクセスした結果のスクリーンショット
-
-### 期限
