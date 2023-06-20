@@ -49,7 +49,7 @@ Apache Web Server
 
 3. Apache をインストールする
 
-    `sudo dnf install -y`
+    `sudo dnf install httpd -y`
 
 4. Apache を起動する
 
