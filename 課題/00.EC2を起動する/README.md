@@ -245,7 +245,7 @@ EC2 に接続してシェル (bash) が起動する
 
 2. CloudShell を起動
 
-3. Actions -> Download file を押す
+3. Actions -> Upload file を押す
 ![](./img/ssh-3.png)
 
 4. ファイルを選択、[Upload] を押す
