@@ -119,5 +119,10 @@ Apache と nginx が起動するポート番号を 80 から 8080 に変更し�
 * Apache: /etc/httpd/conf/httpd.conf 
 * nginx: /etc/nginx/nginx.conf
 
+### 必要な作業
+* テイギファイルの80番ポートを8080番に変更する
+* リスタート(`sudo systemctl restart xxxx`)
+* セキュリティグループを変更
+
 ### 提出物
 Web ブラウザから Web サーバにアクセスした結果のスクリーンショット
