@@ -187,3 +187,26 @@ MariaDB はデフォルトではリモートから接続することができな
     
     3. 作成したユーザーにデータベース (testdb) へのアクセス権限を付与  
     `grant all privileges on `testdb`.* to 'hjuser'@'%';`
+
+---
+### CloudShell から MariaDB に接続する
+1. CloudShell から MariaDB に SSH トンネリングを作成する
+    ```
+    BASTION_IP=Bastion サーバの Public IP
+    DB_IP=MariaDB サーバの Private IP
+
+    eval $(ssh-agent)
+    ssh-add labuser.pem
+
+    ssh -A -N -L3306:"$DB_IP":3306 ec2-user@"$BASTION_IP"
+    ```
+
+2. 新しいタブを開く  
+Actions -> New tab を選択
+
+3. MariaDB に接続する
+    ```
+    mysql -h127.0.0.1 -uhjuser -p
+    ```
+
+# 課題
