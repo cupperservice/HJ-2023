@@ -206,7 +206,55 @@ Actions -> New tab を選択
 
 3. MariaDB に接続する
     ```
-    mysql -h127.0.0.1 -uhjuser -p
+    mysql -h127.0.0.1 -uhjuser -p testdb
     ```
 
 # 課題
+以下の 1,2,3 を実行した結果のスクリーンショットを提出する。
+
+1. テーブルを作成する
+データベースに接続した状態で、[create..sql](./create.sql) にかかれている内容をコピー & ペーストして実行する。
+
+以下のように表示されればOK
+```
++------------+-----------+-------------+-------+
+| first_name | last_name | class_name  | score |
++------------+-----------+-------------+-------+
+| Taro       | Suzuki    | Mathematics |    90 |
+| Taro       | Suzuki    | English     |    53 |
+| Taro       | Suzuki    | Chemistry   |    76 |
+| Hanako     | Mochizuki | Mathematics |    67 |
+| Hanako     | Mochizuki | Chemistry   |    43 |
+| Yuko       | Tanaka    | Mathematics |    55 |
+| Yuko       | Tanaka    | English     |    77 |
+| Yuko       | Tanaka    | Chemistry   |    66 |
+| Tomoko     | Hayashi   | Mathematics |   100 |
+| Tomoko     | Hayashi   | English     |    79 |
+| Tomoko     | Hayashi   | Chemistry   |    97 |
+| Jiro       | Nakata    | Mathematics |    23 |
+| Jiro       | Nakata    | English     |    45 |
+| Jiro       | Nakata    | Chemistry   |    77 |
++------------+-----------+-------------+-------+
+14 rows in set (0.002 sec)
+```
+
+2. 生徒の名前(first_name, last_name)と平均点を表示する。 
+平均の計算はAVG関数を使います。
+
+```
+select a.first_name, a.last_name, avg(score)
+from student a, score b
+where a.id = b.student_id
+group by a.id;
+```
+
+3. 50点以下の点数をとった生徒の名前(first_name, last_name)とクラス名、点数を表示する。
+
+```
+select a.first_name, a.last_name, c.class_name, b.score
+from student a, score b, class c
+where a.id = b.student_id
+  and b.class_id = c.id
+  and b.score <= 50
+group by a.id;
+```
