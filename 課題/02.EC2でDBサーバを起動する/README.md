@@ -188,6 +188,9 @@ MariaDB はデフォルトではリモートから接続することができな
     3. 作成したユーザーにデータベース (testdb) へのアクセス権限を付与  
     `grant all privileges on `wordpress-db`.* to 'hjuser'@'%';`
 
+    4. 変更を有効にする  
+    `flush privileges;`
+
 6. MariaDB サーバ, Bastion サーバから抜ける
 quit -> exit -> exit で CloudShell まで戻る
 
