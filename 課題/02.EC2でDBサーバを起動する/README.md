@@ -17,7 +17,12 @@ EC2 を利用して2種類のデータベース, MariaDB(RDB)を起動します�
 ## 事前準備
 1. CloudShell を起動する
 
-2. [template.yaml](./cfn/template.yaml) を CloudShell 上にアップロードする
+2. [template.yaml](./cfn/template.yaml) を CloudShell 上にダウンロードする
+
+    以下のコマンドを実行して、[template.yaml](./cfn/template.yaml) を CloudShell 上にダウンロードする
+    ```
+    curl https://raw.githubusercontent.com/cupperservice/HJ-2023/main/%E8%AA%B2%E9%A1%8C/02.EC2%E3%81%A7DB%E3%82%B5%E3%83%BC%E3%83%90%E3%82%92%E8%B5%B7%E5%8B%95%E3%81%99%E3%82%8B/cfn/template.yaml -o template.yaml
+    ```
 
 3. 環境を初期化 (bastion サーバを作成する)
   * VPC サービスから VPC と Subnet の ID を確認して以下の VPC ID, Subnet ID に置き換えて実行
