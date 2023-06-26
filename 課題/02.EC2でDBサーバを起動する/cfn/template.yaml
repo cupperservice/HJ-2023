@@ -9,8 +9,8 @@ Parameters:
     Type: AWS::EC2::KeyPair::KeyName
     Default: vockey
   EC2ImageId:
-    Type: AWS::EC2::Image::Id
-    Default: ami-022e1a32d3f742bd8
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64
   InstanceProfile:
     Type: String
     Default: LabInstanceProfile
