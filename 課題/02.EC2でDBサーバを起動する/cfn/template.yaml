@@ -19,7 +19,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties: 
       GroupDescription: For a bastion server
-      GroupName: bastion
+      GroupName: bastion security group
       SecurityGroupEgress:
         - IpProtocol: "-1"
           FromPort: 0

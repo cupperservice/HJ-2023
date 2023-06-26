@@ -1,12 +1,10 @@
 # EC2 で DB サーバを起動する
 EC2 インスタンスを使用して DB サーバを起動する。  
-DB サーバは以下の２つを使用する。
-* [MariaDB](https://mariadb.org/)
-* [MongoDB](https://www.mongodb.com/ja-jp)
+DB サーバは、[MariaDB](https://mariadb.org/)を使用する。
 
 ---
 ## この課題で作成するシステムの構成
-EC2 を利用して2種類のデータベース, MariaDB(RDB), MongoDB (NoSQL)を起動します。  
+EC2 を利用して2種類のデータベース, MariaDB(RDB)を起動します。  
 また、SSH ポートフォーワーディングを利用して DB サーバに接続します。
 
 ![](./img/s1.png)
@@ -17,33 +15,25 @@ EC2 を利用して2種類のデータベース, MariaDB(RDB), MongoDB (NoSQL)�
 
 ---
 ## 事前準備
-1. Cloud9 環境を作成
-    * AWS のサービスで Cloud9 を選択
-    * 「Create environment」を押す
-    *  Name: 任意の値を入力
-    * Network sesttings で Secure Shell (SSH) を選択
-    * 「Create」を押す
-2. Key (labuser.pem) を Cloud9 にアップロード
-    * Cloud9 の左のツリーにドラッグ & ドロップでアップロードできる
-    * Key の Permission を変更する  
-        `chmod 0400 labuser.pem`
-3. 環境を初期化 (bastion サーバを作成する)
-  * AWS のサービスで Cloudfomation を選択
-  * Create stack -> With new resources (standard) を選択
-  * Specify template で Upload a template file を選択
-  * [Choose file] を押して [template.yaml](./cfn/template.yaml) をアップロードする。
-  * [Next] を押す
-  * 以下の項目を入力する
-    * Stack name: init
-    * EC2ImageId: そのまま
-    * InstanceProfile: そのまま
-    * KeyName: そのまま
-    * Subnect: 1つ選択する（どれでも良い）
-    * VPC: 1つ選択する（１つしかないはず）
-  * [Next] を押す
-  * [Next] を押す
-  * [Submit] を押す
+1. CloudShell を起動する
 
+2. [template.yaml](./cfn/template.yaml) を CloudShell 上にアップロードする
+
+3. 環境を初期化 (bastion サーバを作成する)
+  * VPC サービスから VPC と Subnet の ID を確認して以下の VPC ID, Subnet ID に置き換えて実行
+    ```
+    VPC_ID=VPC ID
+    SUBNET_ID=Subnet ID
+    ```
+
+  * CloudFormation の Stack を作成
+    ```
+    aws cloudformation create-stack \
+    --stack-name initialize \
+    --template-body file://template.yaml \
+    --parameters ParameterKey=VPC,ParameterValue="$VPC_ID" \
+    ParameterKey=Subnet,ParameterValue="$SUBNET_ID"
+    ```
 ---
 ## MariaDB サーバ用の EC2 インスタンスを用意する
 1. MariaDB サーバ用のセキュリティグループを作成する
@@ -73,14 +63,24 @@ EC2 を利用して2種類のデータベース, MariaDB(RDB), MongoDB (NoSQL)�
   * Network Settings で [Edit] を押す
     * Auto-assign public IP: Enable を選択する
   * Firewall (security groups): 1.で作成したセキュリティグループを選択する
+  * [Launch instance] を押す
 
 ---
 ## Maria DB をインストールする
-1. Maria DB サーバに Cloud9 から SSH で接続する
+1. CloudShell から Bastion サーバに SSH で接続する
     ```
+    IP=Bastion サーバの Public IP
+
     eval $(ssh-agent)
     ssh-add labuser.pem
-    ssh -A ec2-user@Maria DB サーバの Public IP
+    ssh -A ec2-user@"$IP"
+    ```
+
+2. Bastion サーバから MariaDB サーバに SSH で接続する
+    ```
+    IP=MariaDB サーバの Private IP
+
+    ssh ec2-user@"$IP"
     ```
 
 2. パッケージを最新に更新する  
@@ -136,20 +136,20 @@ EC2 を利用して2種類のデータベース, MariaDB(RDB), MongoDB (NoSQL)�
 ---
 ## MariaDB にリモートから接続できるようにする。
 MariaDB はデフォルトではリモートから接続することができない。  
-そのため、リモートで接続できるようにセットアップする。
+リモートで接続できるようにセットアップする。
 1. MariaDB サーバに SSH で接続する
     1. CloudShell から Bastion サーバに接続する
         ```
-        BASTION_IP=Bastion サーバの Public IP
+        IP=Bastion サーバの Public IP
 
         eval $(ssh-agent)
         ssh-add labuser.pem
 
-        ssh -A ec2-user@"$BASTION_IP"
+        ssh -A ec2-user@"$IP"
         ```
     2. Bastion サーバから MariaDB サーバに接続する
         ```
-        DB_IP=MariaDB サーバの Private IP
+        IP=MariaDB サーバの Private IP
         ssh ec2-user@"$DB_IP"
         ```
 2. MariaDB の定義ファイルを編集する  
@@ -178,7 +178,7 @@ MariaDB はデフォルトではリモートから接続することができな
 
 5. データベースとデータベースに接続するユーザーを作成
     1. データベースを作成  
-    `create database testdb;`
+    `create database `wordpress-db`;`
 
     2. データベースに接続するためのユーザーを作成  
     `create user 'hjuser'@'%' identified by 'password00';`
@@ -186,7 +186,10 @@ MariaDB はデフォルトではリモートから接続することができな
       * パスワード: password00
     
     3. 作成したユーザーにデータベース (testdb) へのアクセス権限を付与  
-    `grant all privileges on `testdb`.* to 'hjuser'@'%';`
+    `grant all privileges on `wordpress-db`.* to 'hjuser'@'%';`
+
+6. MariaDB サーバ, Bastion サーバから抜ける
+quit -> exit -> exit で CloudShell まで戻る
 
 ---
 ### CloudShell から MariaDB に接続する
@@ -206,7 +209,7 @@ Actions -> New tab を選択
 
 3. MariaDB に接続する
     ```
-    mysql -h127.0.0.1 -uhjuser -p testdb
+    mysql -h127.0.0.1 -uhjuser -p wordpress-db
     ```
 
 # 課題
