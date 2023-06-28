@@ -52,7 +52,7 @@ bastion と MariaDB は、[EC2でDBサーバを起動する](../02.EC2%E3%81%A7D
     IP=Bastion サーバの Public IP
 
     eval $(ssh-agent)
-    ssh-add labuser.pem
+    ssh-add labsuser.pem
     ssh -A ec2-user@"$IP"
     ```
 

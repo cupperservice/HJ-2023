@@ -77,7 +77,7 @@ EC2 を利用して2種類のデータベース, MariaDB(RDB)を起動します�
     IP=Bastion サーバの Public IP
 
     eval $(ssh-agent)
-    ssh-add labuser.pem
+    ssh-add labsuser.pem
     ssh -A ec2-user@"$IP"
     ```
 
@@ -148,7 +148,7 @@ MariaDB はデフォルトではリモートから接続することができな
         IP=Bastion サーバの Public IP
 
         eval $(ssh-agent)
-        ssh-add labuser.pem
+        ssh-add labsuser.pem
 
         ssh -A ec2-user@"$IP"
         ```
@@ -215,7 +215,7 @@ quit -> exit -> exit で CloudShell まで戻る
     DB_IP=MariaDB サーバの Private IP
 
     eval $(ssh-agent)
-    ssh-add labuser.pem
+    ssh-add labsuser.pem
 
     ssh -A -N -L3306:"$DB_IP":3306 ec2-user@"$BASTION_IP"
     ```
