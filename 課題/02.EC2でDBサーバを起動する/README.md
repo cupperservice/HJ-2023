@@ -183,7 +183,9 @@ MariaDB はデフォルトではリモートから接続することができな
 
 5. データベースとデータベースに接続するユーザーを作成
     1. データベースを作成  
-    `create database `wordpress-db`;`
+    ```
+    create database `wordpress-db`;
+    ```
 
     2. データベースに接続するためのユーザーを作成  
     `create user 'hjuser'@'%' identified by 'password00';`
