@@ -194,7 +194,7 @@ MariaDB はデフォルトではリモートから接続することができな
       * ユーザーID: hjuser
       * パスワード: password00
     
-    3. 作成したユーザーにデータベース (testdb) へのアクセス権限を付与  
+    3. 作成したユーザーにデータベース (wordpress-db) へのアクセス権限を付与  
     ```
     grant all privileges on `wordpress-db`.* to 'hjuser'@'%';
     ```
