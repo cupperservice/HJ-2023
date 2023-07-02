@@ -3,4 +3,4 @@
 * [TCP/IP (2) トランスポート層](https://www.youtube.com/watch?v=erY_CkAVSYE)
 
 ## 演習
-* 4. [EC2でDBサーバを起動する](./課題/02.EC2でDBサーバを起動する/README.md)
+* 4. [EC2でDBサーバを起動する](../課題/02.EC2でDBサーバを起動する/README.md)
