@@ -89,6 +89,7 @@ AWS Academy の教材を使用して クラウド（AWS）の基礎を理解す�
 2. [EC2を起動する](./課題/00.EC2を起動する/README.md)
 3. [EC2でWebサーバを起動する](./課題/01.EC2でWebサーバを起動する/README.md)
 4. [EC2でDBサーバを起動する](./課題/02.EC2でDBサーバを起動する/README.md)
+5. [EC2でWordPressを起動する](./課題/03.EC2でWordPressを起動する/README.md)
 
 ### 任意提出
 以下の提出は任意です。  
