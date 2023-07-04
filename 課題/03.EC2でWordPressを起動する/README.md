@@ -81,6 +81,9 @@ bastion と MariaDB は、[EC2でDBサーバを起動する](../02.EC2%E3%81%A7D
 7. `wp-config.php` を編集する  
 `vi wordpress/wp-config.php`  
 
+    a. DB_HOST を定義する行を探して、`localhost` を書き換える  
+    `define('DB_NAME', 'dbサーバのPrivate IP');`  
+
     a. DB_NAME を定義する行を探して、`database_name_here` を書き換える  
     `define('DB_NAME', 'wordpress-db');`  
 
