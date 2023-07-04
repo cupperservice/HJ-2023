@@ -158,6 +158,18 @@ bastion と MariaDB は、[EC2でDBサーバを起動する](../02.EC2%E3%81%A7D
 4. 以下の画面が表示されればOK
 ![](./img/wordpress3.png)
 
+## 注意事項
+EC2 の Public IP は EC2 インスタンスを再起動すると値が代わります。  
+Wordpress は DB に自身の IP アドレスを保管して動作するため、そのままだと EC2 インスタンス再起動後は動作しません。
+
+そのため、EC2 インスタンスを再起動した後は以下の SQL を MariaDB で実行してください。
+
+```
+update wp_options
+set option_value = '<新アドレス(WordPressアドレス用)>'
+where option_name in('siteurl','home');
+```
+
 ## 提出物
 環境をそのままにしてWordPress を起動で使用した Username, Password を添えて完了したことを Chat で連絡する
 * End Lab を押して Lab は終了して良い。
