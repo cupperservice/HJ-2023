@@ -1,5 +1,5 @@
 # セキュアなネットワークの構築
-セキュアなネットワークを構築し、その上に [Growi](https://docs.growi.org/ja/) を構築する。
+セキュアなネットワークを構築し、その上に [Growi](https://docs.growi.org/) を構築する。
 
 ---
 ## Growi とは
@@ -52,6 +52,7 @@ CloudFormation を使用して環境を初期化します。
 2. EC2 インスタンスを作成する
   * Name: web
   * AMI: Amazon Linux 2023 を使用する
+  * Instance type: t2.micro
   * Key pair: vockey を使用する
   * Network Settings で [Edit] を押す
     * VPC: MyVPC (環境の初期化で作成した VPC) を選択
@@ -74,6 +75,7 @@ CloudFormation を使用して環境を初期化します。
 2. EC2 インスタンスを作成する
   * Name: application
   * AMI: Amazon Linux 2 を使用する (Amazon Linux 2023 では growi は動作しない)  * Key pair: vockey を使用する
+  * Instance type: t2.large
   * Network Settings で [Edit] を押す
     * VPC: MyVPC (環境の初期化で作成した VPC) を選択
     * Subnet: Private-subnet1 (環境の初期化で作成した Subnet) を選択
@@ -95,6 +97,7 @@ CloudFormation を使用して環境を初期化します。
 2. EC2 インスタンスを作成する
   * Name: mongodb
   * AMI: Amazon Linux 2 を使用する (Amazon Linux 2023 では MongoDB は動作しない)
+  * Instance type: t2.micro
   * Key pair: vockey を使用する
   * Network Settings で [Edit] を押す
     * VPC: MyVPC (環境の初期化で作成した VPC) を選択
