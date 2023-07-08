@@ -40,72 +40,117 @@ CloudFormation を使用して環境を初期化する。
 ### EC2 インスタンスを用意する
 #### __Web サーバを用意する__
 1. Web サーバ用のセキュリティグループを作成する
-    * Security group name: web security group
-    * Description: for web server
-    * VPC: MyVPC (環境の初期化で作成した VPC)
-    * Inbound Roles: 以下の2つのルールを追加
 
-      |Type  |Port|Source                |
-      |:-----|:---|:---------------------|
-      |SSH   |22  |bastion security group|
-      |HTTP  |80  |AnywhereIPv4          |
+    以下の項目を入力する
+
+    |Item               |Value             |
+    |:------------------|:-----------------|
+    |Security group name|web security group|
+    |Description        |for web server    |
+    |VPC                |MyVPC             |
+
+    Inbound Roles に以下の2つのルールを追加
+
+    |Type  |Port|Source                |
+    |:-----|:---|:---------------------|
+    |SSH   |22  |bastion security group|
+    |HTTP  |80  |AnywhereIPv4          |
 
 2. EC2 インスタンスを作成する
-  * Name: web
-  * AMI: Amazon Linux 2023 を使用する
-  * Instance type: t2.micro
-  * Key pair: vockey を使用する
-  * Network Settings で [Edit] を押す
-    * VPC: MyVPC (環境の初期化で作成した VPC) を選択
-    * Subnet: Public-subnet1 (環境の初期化で作成した Subnet) を選択
-    * Auto-assign public IP: Enable を選択
-  * Firewall (security groups): web security group (1.で作成したセキュリティグループ) を選択
+
+    以下の項目を入力する
+
+    |Item               |Value            |
+    |:------------------|:----------------|
+    |Name               |web              |
+    |AMI                |Amazon Linux 2023|
+    |Instance type      |t2.micro         |
+    |Key pair           |vockey           |
+
+    Network Settings で [Edit] を押して以下を設定する
+
+    |Item                      |Value             |
+    |:-------------------------|:-----------------|
+    |VPC                       |MyVPC             |
+    |Subnet                    |Public-subnet1    |
+    |Auto-assign public IP     |Enable            |
+    |Firewall (security groups)|web security group|
 
 #### __Application サーバを用意する__
 1. Application サーバ用のセキュリティグループを作成する
-    * Security group name: application security group
-    * Description: for application server
-    * VPC: MyVPC (環境の初期化で作成した VPC)
-    * Inbound Roles: 以下の2つのルールを追加
 
-      |Type        |Port| Source               |
-      |:-----------|:---|:---------------------|
-      |SSH         |22  |bastion security group|
-      |Custom TCP  |3000|web security group    |
+    以下の項目を入力する
+
+    |Name               |Value                     |
+    |:------------------|:-------------------------|
+    |Security group name|application security group|
+    |Description        |for application server    |
+    |VPC                |MyVPC                     |
+
+    Inbound Roles に以下の2つのルールを追加
+
+    |Type        |Port| Source               |
+    |:-----------|:---|:---------------------|
+    |SSH         |22  |bastion security group|
+    |Custom TCP  |3000|web security group    |
 
 2. EC2 インスタンスを作成する
-  * Name: application
-  * AMI: Ubuntu を使用する (公式ページには Ubuntu と CentOS しか記載されていない)
-  * Key pair: vockey を使用する
-  * Instance type: t2.large
-  * Network Settings で [Edit] を押す
-    * VPC: MyVPC (環境の初期化で作成した VPC) を選択
-    * Subnet: Private-subnet1 (環境の初期化で作成した Subnet) を選択
-    * Auto-assign public IP: Disable を選択
-  * Firewall (security groups): web security group (1.で作成したセキュリティグループ) を選択
+
+    以下の項目を入力する
+
+    |Item               |Value            |
+    |:------------------|:----------------|
+    |Name               |application      |
+    |AMI                |Ubuntu           |
+    |Instance type      |t2.large         |
+    |Key pair           |vockey           |
+
+    Network Settings で [Edit] を押して以下を設定する
+
+    |Item                      |Value                     |
+    |:-------------------------|:-------------------------|
+    |VPC                       |MyVPC                     |
+    |Subnet                    |Private-subnet1           |
+    |Auto-assign public IP     |Disable                   |
+    |Firewall (security groups)|application security group|
 
 #### __MongoDB サーバを用意する__
 1. MongoDB サーバ用のセキュリティグループを作成する
-    * Security group name: mongodb security group
-    * Description: for mongodb server
-    * VPC: MyVPC (環境の初期化で作成した VPC)
-   * Inbound Roles: 以下の2つのルールを追加
 
-      |Type        |Port | Source                   |
-      |:-----------|:----|:-------------------------|
-      |SSH         |22   |bastion security group    |
-      |Custom TCP  |27017|application security group|
+    以下の項目を入力する
+
+    |Item               |Value                 |
+    |:------------------|:---------------------|
+    |Security group name|mongodb security group|
+    |Description        |for mongodb server    |
+    |VPC                |MyVPC                 |
+
+    Inbound Roles に以下の2つのルールを追加
+
+    |Type  |Port |Source                    |
+    |:-----|:----|:-------------------------|
+    |SSH   |22   |bastion security group    |
+    |HTTP  |27017|application security group|
 
 2. EC2 インスタンスを作成する
-  * Name: mongodb
-  * AMI: Amazon Linux 2 を使用する (Amazon Linux 2023 では MongoDB は動作しない)
-  * Instance type: t2.micro
-  * Key pair: vockey を使用する
-  * Network Settings で [Edit] を押す
-    * VPC: MyVPC (環境の初期化で作成した VPC) を選択
-    * Subnet: Private-subnet1 (環境の初期化で作成した Subnet) を選択
-    * Auto-assign public IP: Disable を選択
-  * Firewall (security groups): application security group (1.で作成したセキュリティグループ) を選択
+
+    以下の項目を入力する
+
+    |Item               |Value         |
+    |:------------------|:-------------|
+    |Name               |mongodb       |
+    |AMI                |Amazon Linux 2|
+    |Instance type      |t2.micro      |
+    |Key pair           |vockey        |
+
+    Network Settings で [Edit] を押して以下を設定する
+
+    |Item                      |Value                 |
+    |:-------------------------|:---------------------|
+    |VPC                       |MyVPC                 |
+    |Subnet                    |Private-subnet1       |
+    |Auto-assign public IP     |Disable               |
+    |Firewall (security groups)|mongodb security group|
 
 ---
 ## MongoDB サーバを構築する
