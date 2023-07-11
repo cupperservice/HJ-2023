@@ -127,10 +127,10 @@ CloudFormation を使用して環境を初期化する。
 
     Inbound Roles に以下の2つのルールを追加
 
-    |Type  |Port |Source                    |
-    |:-----|:----|:-------------------------|
-    |SSH   |22   |bastion security group    |
-    |HTTP  |27017|application security group|
+    |Type      |Port |Source                    |
+    |:---------|:----|:-------------------------|
+    |SSH       |22   |bastion security group    |
+    |Custom TCP|27017|application security group|
 
 2. EC2 インスタンスを作成する
 
