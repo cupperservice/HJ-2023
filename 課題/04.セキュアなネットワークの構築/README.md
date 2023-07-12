@@ -357,11 +357,16 @@ CloudFormation を使用して環境を初期化する。
     sudo curl -sL https://raw.githubusercontent.com/cupperservice/HJ-2023/main/%E8%AA%B2%E9%A1%8C/04.%E3%82%BB%E3%82%AD%E3%83%A5%E3%82%A2%E3%81%AA%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E6%A7%8B%E7%AF%89/conf/growi/growi.service -o /etc/systemd/system/growi.service
     ```
 
-5. growi を起動
+5. 定義を `systemd` に認識させる
+    ```
+    sudo systemctl daemon-reload
+    ```
+
+6. growi を起動
     ```
     sudo systemctl start growi
     ```
-6. 起動結果を確認
+7. 起動結果を確認
     ```
     sudo journalctl -f -u growi
     ```
@@ -379,7 +384,7 @@ CloudFormation を使用して環境を初期化する。
     Jul 08 00:03:52 ip-10-0-30-92 npm[3708]: lerna info Executing command in 1 package: "yarn run server"
     ```
 
-7. growi の自動起動を設定
+8. growi の自動起動を設定
     ```
     sudo systemctl enable growi
     ```
