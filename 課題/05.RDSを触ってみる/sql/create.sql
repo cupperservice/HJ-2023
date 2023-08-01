@@ -1,3 +1,7 @@
+CREATE DATABASE `wordpress-db`;
+
+use `wordpress-db`;
+
 CREATE TABLE student (
   id          INTEGER AUTO_INCREMENT,
   first_name  VARCHAR(100) NOT NULL,

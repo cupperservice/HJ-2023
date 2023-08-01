@@ -1,6 +1,13 @@
 # RDS を触ってみる
 
 ---
+## 注意事項
+本課題で作成するAuroraは動作させておくとクレジットの消費が激しいです。  
+そのため、Lab終了時には Aurora を停止するようにしてください。
+
+![](./img/stop.png)
+
+---
 ## この課題で作成するシステムの構成
 ![](./img/s2.png)
 
@@ -113,9 +120,7 @@ Add subnets で以下を設定する
 |Monitoring|Enable Enhanced monitoring のチェックを外す|
 
 #### 11. Additional configuration
-|||
-|:-|:-|
-|Initial database name|wordpress-db|
+データベース名にハイフンが入っていると作成できないのでここではデータベース名は指定しない
 
 ---
 ## データベースにデータを投入する
