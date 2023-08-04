@@ -162,8 +162,9 @@ show variables like "innodb_read_only";
 [EC2でWordPressを起動する](../03.EC2でWordPressを起動する/README.md) を参考にして 作成した RDS を使用して WordPress を起動する
 
 ### 注意点
-1. RDS は wordpress からの通信を受け付ける必要がある。
-2. wordpress の接続先を RDS に変更する必要がある。
+1. wordpress は RDSとVPC(MyVPC) 上に用意する必要がある。
+2. RDS は wordpress からの通信を受け付ける必要がある。
+3. wordpress の接続先を RDS に変更する必要がある。
 
 ---
 ## 提出物
