@@ -31,12 +31,12 @@ AWS Academy の教材を使用して クラウド（AWS）の基礎を理解す�
   * [IPv4 アドレッシング](https://www.youtube.com/watch?v=KrrK3FJNigY)
 
 ### 2. 演習  
-0. [EC2を起動する](./課題/00.EC2を起動する/README.md)
-1. [EC2でWebサーバを起動する](./課題/01.EC2でWebサーバを起動する/README.md)
-2. [EC2でDBサーバを起動する](./課題/02.EC2でDBサーバを起動する/README.md)
-3. [EC2でWordPressを起動する](./課題/03.EC2でWordPressを起動する/README.md)
-4. [セキュアなネットワークの構築](./課題/04.セキュアなネットワークの構築/README.md)
-5. [RDSを触ってみる](./課題/05.RDSを触ってみる/README.md)
+0. [EC2を起動する](./課題/00.EC2を起動する.md)
+1. [EC2でWebサーバを起動する](./課題/01.EC2でWebサーバを起動する.md)
+2. [EC2でDBサーバを起動する](./課題/02.EC2でDBサーバを起動する.md)
+3. [EC2でWordPressを起動する](./課題/03.EC2でWordPressを起動する.md)
+4. [セキュアなネットワークの構築](./課題/04.セキュアなネットワークの構築.md)
+5. [RDSを触ってみる](./課題/05.RDSを触ってみる.md)
 6. [ALBを使用してWebサーバを冗長化する](./課題/06.ALBを使用してWebサーバを冗長化する/README.md)
 7. [Auto Scaling Groupを使用してスケーラブルなWebサーバを構築する](./課題/07.AutoScalingGroupを使用してスケーラブルなWebサーバを構築する/README.md)
 8. [S3で静的コンテンツを配信する](./課題/08.S3で静的コンテンツを配信する/README.md)
