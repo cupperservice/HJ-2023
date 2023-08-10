@@ -16,4 +16,4 @@
 * [OSI 参照モデル](https://www.youtube.com/watch?v=5QHXbxZIUDg)
 
 ## 演習
-* [EC2を起動する](../課題/00.EC2%E3%82%92%E8%B5%B7%E5%8B%95%E3%81%99%E3%82%8B/README.md)
+* [EC2を起動する](../課題/00.EC2を起動する.md)
